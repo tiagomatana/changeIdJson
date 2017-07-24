@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/app.js"></script>
+    <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc6/angular-material.css">
+    <title></title>
+  </head>
+  <body>
+
+    
+
+<div ng-controller="AppCtrl" layout="column" ng-cloak="" ng-app="MyApp">
+
+  <md-content layout-padding layout="row" layout-align="start end">
+    <aps-upload-file></aps-upload-file>
+
+  </md-content>
+
+</div>
+
+
+    <script type="text/javascript">
+    var json;
+    var data;
+    function handleFileSelect(evt) {
+    	var files = evt.target.files; // FileList object
+
+    	// files is a FileList of File objects. List some properties.
+
+    }
+
+    document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+    function handleFileSelect(evt) {
+    	var files = evt.target.files; // FileList object
+
+    	// files is a FileList of File objects. List some properties.
+    	var output = [];
+    	for (var i = 0, f; f = files[i]; i++) {
+    		var reader = new FileReader();
+
+    		// Closure to capture the file information.
+    		reader.onload = (function (theFile) {
+    			return function (e) {
+    				console.log('e readAsText = ', e);
+    				console.log('e readAsText target = ', e.target);
+    				try {
+
+    					json = JSON.parse(e.target.result);
+    					//alert('json global var has been set to parsed json of this file here it is unevaled = \n' + JSON.stringify(json));
+              //document.getElementById("resposta").innerHTML= JSON.stringify(json);
+              //document.getElementById("resposta").innerHTML= json.itemContainer.templateID;
+              var arrayJson = json;
+              var i = 0;
+              var tam = arrayJson.navigationList.length;
+              arrayJson.itemContainer.forEach(function() {
+                if (i<tam) {
+                  json.itemContainer[i].templateID = json.itemContainer[i].customID;
+
+
+
+                  i++;
+                }
+
+              })
+              i =0;
+              var tamanho = arrayJson.navigationList.length;
+              var index = arrayJson.navigationList.length-1;
+              //alert(tamanho);
+              //arrayJson.navigationList.forEach(function(obj) {
+              for(var i = 0;i<=tamanho;i++){
+                if(i<tamanho-1){
+                  console.log(i);
+                  try {
+                    //console.log(json.itemContainer[i].templateID);
+                    switch (i) {
+                      case 0:
+                        json.navigationList[i].routes[0].destination = json.itemContainer[i].templateID;
+                        json.navigationList[i].routes[0].name = 'BEGIN NODE_' + json.itemContainer[i].templateID;
+
+                        break;
+                      case 1:
+                          json.navigationList[i].inNavigations[0].origin = json.itemContainer[index-2].templateID;
+
+                        break;
+                      case 2:
+                          json.navigationList[i].origin = json.itemContainer[i-2].templateID;
+                          json.navigationList[i].inNavigations[0].origin = 'BEGIN NODE';
+                          json.navigationList[i].routes[0].destination = json.itemContainer[i-1].templateID;
+                          json.navigationList[i].routes[0].name = json.itemContainer[i-2].templateID + "_" + json.itemContainer[i-1].templateID;
+                          json.navigationList[i].routes[0].origin = json.itemContainer[i-2].templateID;
+
+                        break;
+                      default:
+                        json.navigationList[i].origin = json.itemContainer[i-2].templateID;
+
+
+                        json.navigationList[i].inNavigations[0].origin = json.itemContainer[i-3].templateID;
+                        json.navigationList[i].routes[0].origin = json.itemContainer[i-2].templateID;
+                        json.navigationList[i].routes[0].destination = json.itemContainer[i-1].customID;
+                        json.navigationList[i].routes[0].name = json.itemContainer[i-2].templateID + "_" + json.itemContainer[i-1].templateID;
+
+                    }
+
+
+
+
+                    //json.navigationList[i].routes[0].name = json.itemContainer[i-2].templateID + "_" + json.itemContainer[i-1].templateID;
+                    //console.log(json.itemContainer[i-2].templateID);
+                  } catch (e) {
+                    console.log(i+ " - "+e);
+                  }
+
+                }else
+                  if(i==tamanho-1){
+                  try {
+                    json.navigationList[i].origin = json.itemContainer[i-2].templateID;
+                    json.navigationList[i].inNavigations[0].origin = json.itemContainer[i-3].templateID;
+                    json.navigationList[i].routes[0].origin = json.itemContainer[i-2].templateID;
+
+                    json.navigationList[i].routes[0].destination = 'END NODE';
+                    json.navigationList[i].routes[0].name = json.itemContainer[i-2].templateID + "_END NODE";
+
+
+                  } catch (e) {
+                    console.log(i+ " - "+e);
+                  }
+
+                }
+
+
+
+
+              }
+              //document.getElementById("resposta").innerHTML= JSON.stringify(json.navigationList);
+
+              data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json));
+              $('#container').html('');
+              $('<a href="data:' + data + '" download="surveyTemplate.json">Download JSON</a>').appendTo('#container');
+
+    				} catch (ex) {
+    					alert('ex when trying to parse json = ' + ex);
+    				}
+    			}
+    		})(f);
+    		reader.readAsText(f);
+    	}
+
+    }
+
+    document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc6/angular-material.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js"></script>
+<script type="text/javascript">
+angular.module('MyApp')
+
+.controller('AppCtrl', function($scope) {
+
+}).directive('apsUploadFile', apsUploadFile);
+
+function apsUploadFile() {
+  var directive = {
+    restrict: 'E',
+    template: '<input type="file" id="files" name="files[]" multiple class="ng-hide"> <md-button id="uploadButton" class="md-raised md-primary" aria-label="attach_file">    Escolha o JSON </md-button><md-input-container  md-no-float>    <input id="textInput" ng-model="fileName" type="text" placeholder="No file chosen" ng-readonly="true"></md-input-container><div id="container" style="margin-left:8px"></div>',
+    link: apsUploadFileLink
+  };
+  return directive;
+}
+
+function apsUploadFileLink(scope, element, attrs) {
+  var input = $(element[0].querySelector('#files'));
+  var button = $(element[0].querySelector('#uploadButton'));
+  var textInput = $(element[0].querySelector('#textInput'));
+
+  if (input.length && button.length && textInput.length) {
+    button.click(function(e) {
+      input.click();
+    });
+    textInput.click(function(e) {
+      input.click();
+    });
+  }
+
+  input.on('change', function(e) {
+    var files = e.target.files;
+    if (files[0]) {
+      scope.fileName = files[0].name;
+      handleFileSelect(e);
+    } else {
+      scope.fileName = null;
+    }
+    scope.$apply();
+  });
+}
+</script>
+
+  </body>
+</html>
