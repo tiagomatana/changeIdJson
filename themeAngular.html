@@ -1,0 +1,163 @@
+<html lang = "en">
+   <head>
+      <link rel = "stylesheet"
+         href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+      <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+
+      <script language = "javascript">
+         angular
+            .module('firstApplication', ['ngMaterial'])
+            .controller('themeController', themeController)
+            .config(function($mdThemingProvider) {
+               $mdThemingProvider.theme('customTheme')
+               .primaryPalette('grey')
+               .accentPalette('orange')
+               .warnPalette('red');
+            });
+
+         function themeController ($scope) {
+         }
+      </script>
+   </head>
+
+   <body ng-app = "firstApplication">
+      <div id = "themeContainer" ng-controller = "themeController as ctrl" ng-cloak>
+         <md-toolbar class = "md-primary">
+            <div class = "md-toolbar-tools">
+               <h2 class = "md-flex">Default Theme</h2>
+            </div>
+         </md-toolbar>
+         <hr/>
+
+         <md-card>
+            <md-card-content layout = "column">
+               <md-toolbar class = "md-primary">
+                  <div class = "md-toolbar-tools">
+                     <h2 class = "md-flex">Using md-primary style</h2>
+                  </div>
+               </md-toolbar>
+
+               <md-toolbar class = "md-primary md-hue-1">
+                  <div class = "md-toolbar-tools">
+                     <h2 class = "md-flex">Using md-primary md-hue-1 style</h2>
+                  </div>
+               </md-toolbar>
+
+               <md-toolbar class = "md-primary md-hue-2">
+                  <div class = "md-toolbar-tools">
+                     <h2 class = "md-flex">Using md-primary md-hue-2 style</h2>
+                  </div></md-toolbar>
+
+               <md-toolbar class = "md-accent">
+                  <div class = "md-toolbar-tools">
+                     <h2 class = "md-flex">Using md-accent style</h2>
+                  </div>
+               </md-toolbar>
+
+               <md-toolbar class = "md-accent md-hue-1">
+                  <div class = "md-toolbar-tools">
+                     <h2 class = "md-flex">Using md-accent md-hue-1 style</h2>
+                  </div>
+               </md-toolbar>
+
+               <md-toolbar class = "md-accent md-hue-2">
+                  <div class = "md-toolbar-tools">
+                     <h2 class = "md-flex">Using md-accent md-hue-2 style</h2>
+                  </div>
+               </md-toolbar>
+
+               <md-toolbar class = "md-warn">
+                  <div class = "md-toolbar-tools">
+                     <h2 class = "md-flex">Using md-warn style</h2>
+                  </div>
+               </md-toolbar>
+
+               <md-toolbar class = "md-warn md-hue-1">
+                  <div class = "md-toolbar-tools">
+                     <h2 class = "md-flex">Using md-warn md-hue-1 style</h2>
+                  </div>
+               </md-toolbar>
+
+               <md-toolbar class = "md-warn md-hue-2">
+                  <div class = "md-toolbar-tools">
+                     <h2 class = "md-flex">Using md-warn md-hue-2 style</h2>
+                  </div>
+               </md-toolbar>
+            </md-card-content>
+         </md-card>
+
+         <div md-theme = "customTheme">
+            <md-toolbar class = "md-primary">
+               <div class = "md-toolbar-tools">
+                  <h2 class = "md-flex">Custom Theme</h2>
+               </div>
+            </md-toolbar>
+            <hr/>
+
+            <md-card>
+               <md-card-content layout = "column">
+                  <md-toolbar class = "md-primary">
+                     <div class = "md-toolbar-tools">
+                        <h2 class = "md-flex">Using md-primary style</h2>
+                     </div>
+                  </md-toolbar>
+
+                  <md-toolbar class = "md-primary md-hue-1">
+                     <div class = "md-toolbar-tools">
+                        <h2 class = "md-flex">Using md-primary md-hue-1 style</h2>
+                     </div>
+                  </md-toolbar>
+
+                  <md-toolbar class = "md-primary md-hue-2">
+                     <div class = "md-toolbar-tools">
+                        <h2 class = "md-flex">Using md-primary md-hue-2 style</h2>
+                     </div>
+                  </md-toolbar>
+
+                  <md-toolbar class = "md-accent">
+                     <div class = "md-toolbar-tools">
+                        <h2 class = "md-flex">Using md-accent style</h2>
+                     </div>
+                  </md-toolbar>
+
+                  <md-toolbar class = "md-accent md-hue-1">
+                     <div class = "md-toolbar-tools">
+                        <h2 class = "md-flex">Using md-accent md-hue-1 style</h2>
+                     </div>
+                  </md-toolbar>
+
+                  <md-toolbar class = "md-accent md-hue-2">
+                     <div class = "md-toolbar-tools">
+                        <h2 class = "md-flex">Using md-accent md-hue-2 style</h2>
+                     </div>
+                  </md-toolbar>
+
+                  <md-toolbar class = "md-warn">
+                     <div class = "md-toolbar-tools">
+                        <h2 class = "md-flex">Using md-warn style</h2>
+                     </div>
+                  </md-toolbar>
+
+                  <md-toolbar class = "md-warn md-hue-1">
+                     <div class = "md-toolbar-tools">
+                        <h2 class = "md-flex">Using md-warn md-hue-1 style</h2>
+                     </div>
+                  </md-toolbar>
+
+                  <md-toolbar class = "md-warn md-hue-2">
+                     <div class = "md-toolbar-tools">
+                        <h2 class = "md-flex">Using md-warn md-hue-2 style</h2>
+                     </div>
+                  </md-toolbar>
+               </md-card-content>
+            </md-card>
+
+         </div>
+      </div>
+   </body>
+</html>
