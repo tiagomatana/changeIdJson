@@ -72,7 +72,7 @@ function handleFileSelect(evt) {
           }
           data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json));
           $('#container').html('');
-          $('<a href="data:' + data + '" download="surveyTemplate.json">Download JSON</a>').appendTo('#container');
+          $('<a href="data:' + data + '" download="surveyTemplate.json"><img src="img/JSON.png" width="200"/></a>').appendTo('#container');
 
         } catch (ex) {
           alert('ex when trying to parse json = ' + ex);

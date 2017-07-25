@@ -1,7 +1,7 @@
 angular.module('MyApp', ['ngMaterial'])
 .config(function($mdThemingProvider) {
    $mdThemingProvider.theme('customTheme')
-   .primaryPalette('grey')
+   .primaryPalette('purple')
    .accentPalette('orange')
    .warnPalette('red');
 })
