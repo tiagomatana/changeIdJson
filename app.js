@@ -6,13 +6,14 @@ angular.module('MyApp', ['ngMaterial'])
    .warnPalette('red');
 })
 .controller('AppCtrl', function($scope) {
+$scope.imagePath = 'img/JSON.png';
 
 }).directive('apsUploadFile', apsUploadFile);
 
 function apsUploadFile() {
   var directive = {
     restrict: 'E',
-    template: '<input type="file" id="files" name="files[]" multiple class="ng-hide"> <md-button id="uploadButton" class="md-raised md-primary md-hue-2" aria-label="attach_file">    Escolha o JSON </md-button><md-input-container  md-no-float>    <input id="textInput" ng-model="fileName" type="text" placeholder="Nenhum arquivo" ng-readonly="true"></md-input-container><div id="container" style="margin-left:8px"></div>',
+    template: '<input type="file" id="files" name="files[]" multiple class="ng-hide"> <md-button id="uploadButton" class="md-raised md-primary md-hue-2" aria-label="attach_file">    Escolha o JSON </md-button><md-input-container  md-no-float>    <input id="textInput" ng-model="fileName" type="text" placeholder="Nenhum arquivo" ng-readonly="true"></md-input-container>',
     link: apsUploadFileLink
   };
   return directive;

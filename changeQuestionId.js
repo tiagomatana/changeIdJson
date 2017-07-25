@@ -1,5 +1,6 @@
 var json;
 var data;
+$('#card').hide();
 function handleFileSelect(evt) {
   var files = evt.target.files;
 }
@@ -71,8 +72,8 @@ function handleFileSelect(evt) {
             }
           }
           data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json));
-          $('#container').html('');
-          $('<a href="data:' + data + '" download="surveyTemplate.json"><img src="img/JSON.png" width="200"/></a>').appendTo('#container');
+          $('#card').show();
+          $('<a href="data:' + data + '" download="surveyTemplate.json" style="text-decoration:none;color:#000;">Download</a>').appendTo('#container');
 
         } catch (ex) {
           alert('ex when trying to parse json = ' + ex);
@@ -83,5 +84,3 @@ function handleFileSelect(evt) {
   }
 
 }
-
-document.getElementById('files').addEventListener('change', handleFileSelect, false);

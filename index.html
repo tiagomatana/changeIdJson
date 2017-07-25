@@ -7,9 +7,19 @@
 
 
     <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc6/angular-material.css">
-    <link rel="stylesheet" href="./node_modules/admin_lte/bootstrap/css/bootstrap.min.css">
-    <script src="./node_modules/admin_lte/bootstrap/js/bootstrap.min.js"></script>
-    <title></title>
+    <style type="text/css">
+    a:link,a:visited {
+    	text-decoration: none
+    	}
+    a:hover {
+    	text-decoration: underline;
+    	color: #f00
+    	}
+    a:active {
+    	text-decoration: none
+    	}
+    </style>
+    <title>Change ID Template</title>
   </head>
   <body style="padding:20px">
     <div class="wrapper">
@@ -23,6 +33,24 @@
 
           </md-content>
 
+          <md-card id="card">
+            <md-card-header>
+              <md-card-avatar>
+                <img class="md-user-avatar" src="img/avatar.png">
+              </md-card-avatar>
+              <md-card-header-text>
+                <span class="md-title">surveyTemplate.json</span>
+                <span class="md-subhead">Arquivo gerado com sucesso.</span>
+              </md-card-header-text>
+            </md-card-header>
+
+            <md-card-actions layout="row" layout-align="start center" >
+              <md-button id="container"></md-button>
+
+
+            </md-card-actions>
+
+          </md-card>
         </div>
 
 
